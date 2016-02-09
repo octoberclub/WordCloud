@@ -1,9 +1,22 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>
-</title>
+    <meta charset="utf-8" />
+    <title>JSON Sample</title>
 </head>
 <body>
-<p>Some text</p>
+    <div id="placeholder"></div>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script>
+  $.getJSON('topics.json', function(data) {
+        var output="<ul>";
+        for (var i in data.topics) {
+            output+="<li>" + data.topics[i].label+"</li>";
+        }
+
+        output+="</ul>";
+        document.getElementById("placeholder").innerHTML=output;
+  });
+    </script>
 </body>
 </html>
