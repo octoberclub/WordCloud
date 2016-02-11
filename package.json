@@ -1,0 +1,27 @@
+{
+  "name": "wordcloud",
+  "version": "1.0.0",
+  "description": "WordCloud Challenge",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/octoberclub/WordCloud.git"
+  },
+  "keywords": [
+    "WordCloud",
+    "Challenge",
+    "Brandwatch"
+  ],
+  "author": "Michelle Steele",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/octoberclub/WordCloud/issues"
+  },
+  "homepage": "https://github.com/octoberclub/WordCloud#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
