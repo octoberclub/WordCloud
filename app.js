@@ -22,20 +22,15 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-function sortByPopularityDesc(topics) {
-  return topics.sort(function(a,b) { 
-    return a.sentiment.positive < b.sentiment.positive;
+/*
+ * Possibly change this to pass back required information only
+ *
+ * app.get('/topics.json', function (req, res) {
+
+    readJSONFile('topics.json', function (err, json) {
+      res.json(json);
   });
-}
-
-app.get('/topics.json', function (req, res) {
-
-  readJSONFile('topics.json', function (err, json) {
-  
-    res.json(json);
-
-  });
-});
+});*/
 
 app.listen(3000, function () {
   console.log('listening on port 3000!');

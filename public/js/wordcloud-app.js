@@ -1,19 +1,21 @@
 var main = function () {
   $.getJSON("topics.json", function (response) {
 
-console.log(response);     
-var json = response;
-
      var words = [];
-     var steps=6.0;
+     var maxSteps=6.0
+	     
+	     
+     var json={ topics: sortByPopularityDescending(response.topics) };
+
 
      for (var i in json.topics) {
        var topic=json.topics[i];
 
-       var sentimentStyle="neutral";
+       var sentimentStyle="neutral";     
        if(topic.sentimentScore>60) sentimentStyle="positive";
        if(topic.sentimentScore<40) sentimentStyle="negative";
-       var popularity=Math.floor(i/steps)+1;
+
+       var popularity=parseFloat(Math.floor(parseFloat(i)/(maxSteps-1))+1.0);
 
        words[words.length]= {
           text:   topic.label,
@@ -22,21 +24,35 @@ var json = response;
           handlers : {click: function() {
             var zz = topic;
                 return function() {
-                    console.log("Clicked on topic " +  zz.label + ", json="  + JSON.stringify(zz));
+                    var output="<p>Information on topic: &quot;" + zz.label + "&quot;</p></br><ul>";
+		    output+="<li>Total Mentions: " + zz.volume + "</li>";
+		    output+="<li>Positive Mentions: " + ((zz.sentiment.positive !== undefined) ? zz.sentiment.positive : "0") + "</li>";
+		    output+="<li>Neutral Mentions: "  + ((zz.sentiment.neutral !== undefined)  ? zz.sentiment.neutral  : "0") + "</li>";
+		    output+="<li>Negative Mentions: " + ((zz.sentiment.negative !== undefined) ? zz.sentiment.negative : "0") + "</li>";
+		    output+="</ul>";
+		    $("#topicprops").html(output);
                 }
             }()}
        };
      }
 
-     $("#wordcloud").jQCloud( words ), {
-       steps: 6,
-       fontSize: {
+     $("#wordcloud").jQCloud( words, {
+       classPattern: null,
+       steps: maxSteps, 
+       fontSize : { 
          from: 0.1,
-         to: 0.02
+	 to: 0.02
        }
-     } 
+     })
   });
 };
+
+
+function sortByPopularityDescending(topics) {
+  return topics.sort(function(a,b) { 
+      return parseFloat(a.volume) - parseFloat(b.volume);
+  });
+}
 
 $(document).ready(main);
 
