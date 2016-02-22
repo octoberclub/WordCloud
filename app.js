@@ -22,15 +22,12 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-/*
- * Possibly change this to pass back required information only
- *
- * app.get('/topics.json', function (req, res) {
+app.get('/topics.json', function (req, res) {
 
     readJSONFile('topics.json', function (err, json) {
       res.json(json);
   });
-});*/
+});
 
 app.listen(3000, function () {
   console.log('listening on port 3000!');
