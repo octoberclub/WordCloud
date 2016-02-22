@@ -22,20 +22,17 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/wordcloud.json', function (req, res) {
+function sortByPopularityDesc(topics) {
+  return topics.sort(function(a,b) { 
+    return a.sentiment.positive < b.sentiment.positive;
+  });
+}
+
+app.get('/topics.json', function (req, res) {
 
   readJSONFile('topics.json', function (err, json) {
   
-    var words = [];
-
-    for (var i in json.topics) {
-      words[words.length]={
-	  "text": json.topics[i].label,
-          "weight": json.topics[i].volume 
-      };
-    }
-
-    res.json(JSON.stringify(words));
+    res.json(json);
 
   });
 });

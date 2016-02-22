@@ -25,4 +25,13 @@
     text-align:center;
     padding:5px; 
 }
+.neutral{
+    color:grey;
+}
+.positive{
+    color:green;
+}
+.negative {
+    color:red;
+}
 </style>
