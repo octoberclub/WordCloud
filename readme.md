@@ -11,7 +11,7 @@ Each word shows the label of a topic sized by popularity.
 Topics are colored green for positive sentiment, grey for neutral and red for negative.  
 The topic when clicked on displays a breakdown of sentiments.
 
-![Wordcloud Screenshot]()
+![Wordcloud screenshot](screenshot.png)
 
 ## Installation
 
