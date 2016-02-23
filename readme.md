@@ -24,7 +24,7 @@ The topic when clicked on displays a breakdown of sentiments.
 
 **To run the tests:**  
 
-* npm tests
+* npm test
 
 
 ## Dependencies and frameworks
