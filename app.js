@@ -25,10 +25,22 @@ app.get('/', function (req, res) {
 app.get('/topics.json', function (req, res) {
 
     readJSONFile('topics.json', function (err, json) {
-      res.json(json);
+
+      // Clone the topics array into a subset to reduce traffic
+      var topicsArr=[];
+      for (var i in json.topics) {
+        var topic=json.topics[i];
+	topicsArr[topicsArr.length]={
+          label:topic.label,
+	  volume:topic.volume,
+	  sentimentScore:topic.sentimentScore,
+          sentiment:topic.sentiment
+	};
+      }
+      res.json({topics:topicsArr});
   });
 });
 
-app.listen(3000, function () {
+app.listen(3001, function () {
   console.log('listening on port 3000!');
 });
